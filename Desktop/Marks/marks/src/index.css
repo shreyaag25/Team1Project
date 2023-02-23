@@ -41,6 +41,7 @@ font-family: Copperplate Gothic Light;
 }
 .hoo{
   font-family:Copperplate Gothic Light;
+  margin-top:1ch;
 }
 .form-container{
   background: linear-gradient(150deg,#1B394D 33%,#2D9DA7 34%,#2D9DA7 66%,#EC5F20 67%);
@@ -137,4 +138,6 @@ font-family: Copperplate Gothic Light;
 }
 .form-bg{
   margin-top: 8ch;
+ padding-left:55ch;
+  width:900px;
 }
