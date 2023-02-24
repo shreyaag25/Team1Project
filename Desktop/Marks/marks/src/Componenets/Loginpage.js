@@ -1,6 +1,7 @@
 import React from 'react'
-
+import { useNavigate } from 'react-router-dom'
 export default function Loginpage() {
+     const navigate=useNavigate()
   return (
     <>
     <center><b><h1 className="hoo">Grade Check</h1></b></center>
@@ -44,9 +45,9 @@ export default function Loginpage() {
                             </select>  */}
                             </h4>
                         </div>
-                        <button className="btn signin">Login</button>
+                        <button onClick={()=>navigate('Home')} className="btn signin">Login</button>
                         <div>
-                        <h6>Do not have an account?<a href="/">Sign up</a></h6>
+                        <h6>Do not have an account?<a href="register">Sign up</a></h6>
                         </div>
                     </form>
                 </div>

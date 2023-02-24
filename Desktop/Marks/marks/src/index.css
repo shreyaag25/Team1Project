@@ -141,3 +141,33 @@ font-family: Copperplate Gothic Light;
  padding-left:55ch;
   width:900px;
 }
+.gradient-custom {
+  /* fallback for old browsers */
+  background: lightblue;
+  padding-left: 2ch;
+  
+  border-radius: 15px;
+  
+  }
+  
+  .card-registration .select-input.form-control[readonly]:not([disabled]) {
+  font-size: 1rem;
+ 
+ 
+  }
+  .card-registration{
+    border-radius: 15px;
+    margin-top: 2ch;
+    height: 540px;
+    caret-color: transparent;
+  }
+  .reg{
+    
+    background-color: orange;
+  }
+  .ho{
+    margin-top: 200px;
+  }
+  .resgi{
+    text-decoration:none;
+  }
