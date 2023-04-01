@@ -35,14 +35,14 @@ export default function Registrationform() {
     
     const data = new FormData(event.currentTarget);
     let pa=data.get('pass');
-    let em=data.get('email');
-    let k;
-    if(em.includes('@gmail.com')){
-      k="True";
-    }
-    else{
-      k="False";
-    }
+    // let em=data.get('email');
+    // let k;
+    // if(em.includes('@gmail.com')){
+    //   k="True";
+    // }
+    // else{
+    //   k="False";
+    // }
     let patt = new RegExp("[0-9]");
     let result = patt.test(pa);
     let pa1 = data.get('userid');
@@ -79,13 +79,13 @@ export default function Registrationform() {
      document.getElementById("ema").value = "";
    }
  
-   else if(k==="False"){
-    document.getElementById("ema").style.border = "2px solid red";
-    document.getElementById("erroremail").style.color = "red";
-     document.getElementById("ema").value="";
-    document.getElementById("erroremail").innerHTML="The email should be of the form example@gmail.com";
+  //  else if(k==="False"){
+  //   document.getElementById("ema").style.border = "2px solid red";
+  //   document.getElementById("erroremail").style.color = "red";
+  //    document.getElementById("ema").value="";
+  //   document.getElementById("erroremail").innerHTML="The email should be of the form example@gmail.com";
 
-   }
+  //  }
    else if(result===false || pa.length<5 || pa.length>20){
         document.getElementById("bd").style.border = "2px solid red";
          document.getElementById("errorpassword").style.color = "red";
@@ -110,7 +110,23 @@ export default function Registrationform() {
     }).then((response) => {
       console.log(response.data);
       setRes(response.data);
-      navigate('/')
+      emailjs.sendForm(
+        "service_nsjmlm9",
+        "template_5xh67by",
+        form.current,
+        "tdcsrPVxRWEBjvfoA"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          console.log("message sent");
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+      
+      navigate('/');
       
     }).catch((error) => {
         console.log(error);
@@ -126,21 +142,21 @@ export default function Registrationform() {
 
    
     //email sending
-    emailjs.sendForm(
-      "service_nsjmlm9",
-      "template_5xh67by",
-      form.current,
-      "tdcsrPVxRWEBjvfoA"
-    )
-    .then(
-      (result) => {
-        console.log(result.text);
-        console.log("message sent");
-      },
-      (error) => {
-        console.log(error.text);
-      }
-    );
+    // emailjs.sendForm(
+    //   "service_nsjmlm9",
+    //   "template_5xh67by",
+    //   form.current,
+    //   "tdcsrPVxRWEBjvfoA"
+    // )
+    // .then(
+    //   (result) => {
+    //     console.log(result.text);
+    //     console.log("message sent");
+    //   },
+    //   (error) => {
+    //     console.log(error.text);
+    //   }
+    // );
     
 
   }

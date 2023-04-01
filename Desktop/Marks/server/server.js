@@ -77,6 +77,29 @@ app.post('/data',async (req,res) => {
     }
     res.send(r);
 })
+app.get('/products',async (req,res) => {
+    const result = await co.find( {admin:"False"}).toArray();
+    // console.log(result);
+    res.send(result);
+})
+app.get('/profile',async (req,res) => {
+    const result = await co.find( {admin:"True"}).toArray();
+    //  console.log(result);
+    res.send(result);
+})
+
+app.delete("/delete/:userid",async(req,res) => {
+    const id = req.params.userid;
+   const result = await co.deleteOne({userid:id});
+//    console.log(result);
+   res.send(result);
+})
+app.get('/count',async (req,res) => {
+    const resu = await co.find( {admin:"False"}).toArray();
+   
+    res.send(resu);
+})
+
 
 app.listen(1111)
 console.log("Server Started")

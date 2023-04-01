@@ -37,7 +37,7 @@ export default function Navbar() {
               Student
             </a>
             <ul className="dropdown-menu dropdown-menu-dark">
-              <li><a className="dropdown-item" href="add">Add Student</a></li>
+              {/* <li><a className="dropdown-item" href="add">Add Student</a></li> */}
               <li><a className="dropdown-item" href="manage">Manage Students</a></li>
               
             </ul>
@@ -47,7 +47,7 @@ export default function Navbar() {
              Subject
             </a>
             <ul className="dropdown-menu dropdown-menu-dark">
-              <li><a className="dropdown-item" href="cs">Create Subject</a></li>
+              <li><a className="dropdown-item" href="cs">Add Subject</a></li>
               <li><a className="dropdown-item" href="ms">Manage Subjects</a></li>
     
             </ul>
@@ -74,7 +74,8 @@ export default function Navbar() {
   
 </nav>
 <div>
- <center> <h1 className='ho'>This is the Create Subject Page</h1><h2>Under Construction  &#128531;!!</h2></center>
+ {/* <center> <h1 className='ho'>This is the Create Subject Page</h1><h2>Under Construction  &#128531;!!</h2></center> */}
+
  </div>
  </>
   )

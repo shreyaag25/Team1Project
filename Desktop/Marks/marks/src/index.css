@@ -5,9 +5,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color:#48D1CC;
+  background-color:white;
+  overflow: scroll;
   
-  overflow: hidden;
+
 }
 
 code {
@@ -140,15 +141,16 @@ font-family: Copperplate Gothic Light;
 }
 .form-bg{
 
-  padding-left:45ch; 
-   width:900px; 
+  padding-left:22ch; 
+   width:700px; 
 }
 .gradient-custom {
   /* fallback for old browsers */
-  background:#48D1CC;
+  /* background:#48D1CC; */
   padding-left: 2ch;
   
   border-radius: 15px;
+  overflow: scroll;
   
   }
   
@@ -181,8 +183,8 @@ font-family: Copperplate Gothic Light;
     text-decoration:none;
   }
   .sp {
-   padding-left:48ch; 
-   width:850px;
+   padding-left:30ch; 
+   width:700px;
    
     position: fixed;
     z-index: 1;
@@ -214,6 +216,7 @@ font-family: Copperplate Gothic Light;
   }
   .k{
    bottom:2px;
+ 
   }
   .spli {
     padding-left:7ch; 
@@ -226,8 +229,9 @@ font-family: Copperplate Gothic Light;
     background-color: white;
    }
    .spl {
-    padding-left:9.5ch; 
-     position: fixed;
+    margin-top: 1ch;
+     padding-left:25ch;
+      position: fixed;
      z-index: 1;
      top: 3ch;
      overflow-x: hidden;
@@ -504,3 +508,87 @@ font-family: Copperplate Gothic Light;
       border-color: tranparent;
     }
   }
+   .bg{
+    
+     height: 500px;
+     width:100%;
+  }
+
+  .c1{
+    background: linear-gradient(45deg, #4099ff, #73b4ff);
+    margin: 50px;  
+
+    width:250px;
+  }
+  .c2{
+    background: linear-gradient(45deg, #2ed8b6, #59e0c5);
+    margin: 50px;  
+    width:250px;
+  }
+.dis{
+  margin-left: 300px;
+  display: flex;
+} 
+ .tab{
+  
+  margin-top:3ch;
+  margin-left: 4ch;
+} 
+ .App{
+  margin-top: 10ch;
+}
+.varshi {
+color:white;
+  margin-top:4ch;
+  margin-left: 3ch;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+} 
+
+.table {
+  width: 90%;
+  border: 1px solid #eeeeee;
+}
+
+.table-header {
+  display: flex;
+  width: 100%;
+  background: #000;
+  padding: 20px 0;
+}
+
+.table-row {
+  display: flex;
+  width: 100%;
+  padding: 18px 0;
+}
+.table-row:nth-of-type(odd) {
+  background: #eeeeee;
+}
+
+.table-data,
+.header__item {
+  flex: 1 1 20%;
+  text-align: center;
+}
+
+.header__item {
+  text-transform: uppercase;
+  color:white;
+}
+ .hp{
+  font-size: 11px;
+}
+.ho1{
+  margin-top: 3.5ch;
+}
+.ho2{
+margin-top: 4ch;
+color:red;
+}
+.prof{
+  margin:5ch;
+  margin-bottom: 5ch;
+} 

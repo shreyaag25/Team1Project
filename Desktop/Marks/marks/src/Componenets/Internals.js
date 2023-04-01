@@ -37,7 +37,7 @@ export default function Navbar() {
               Student
             </a>
             <ul className="dropdown-menu dropdown-menu-dark">
-              <li><a className="dropdown-item" href="add">Add Student</a></li>
+              {/* <li><a className="dropdown-item" href="add">Add Student</a></li> */}
               <li><a className="dropdown-item" href="manage">Manage Students</a></li>
               
             </ul>
