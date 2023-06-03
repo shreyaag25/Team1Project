@@ -8,20 +8,21 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 // import "bootstrap-icons/font/bootstrap-icons.css";
-export default function Regext() {
+export default function ResultAnalysis() {
   const navigate=useNavigate()
   const [res,setRes] = useState(null);
+  const [res1,setRes1]=useState(null);
   const id = useSelector(state => state.login[0]);
   useEffect(() => {
-    axios.get("http://localhost:1111/regext", {
+    axios.get("http://localhost:1111/reual", {
         params: {
           id: id
         }
       })
-      .then((result) => {
-        setRes(result.data);
-         
-         console.log("result",result.data);
+      .then((response) => {
+        setRes(response.data[0]);
+        setRes1(response.data[1]);
+        console.log("result", response.data[0], response.data[1]);
       })
       .catch((error) => {
         console.log(error);
@@ -95,10 +96,10 @@ export default function Regext() {
                <br/>
              <a className="dropdown-item" href="reqstu">Requests or queries</a>
                
-               
              <li className="nav-item">
                   <a className="nav-link active" aria-current="page" href="stano">Announcements</a>
                 </li>
+           
            </ul>
            
            
@@ -109,8 +110,7 @@ export default function Regext() {
      </div>
      
    </nav>
-   <center><h1 className='ho1 hoo'>Externals</h1></center> 
-   
+   <center><h1 className='ho1 hoo'>Result</h1></center> 
  </>
   );}
   else{
@@ -194,8 +194,8 @@ export default function Regext() {
        </div>
        
      </nav>
-     <center><h1 className='ho1 hoo'>Externals</h1></center>
-     <div className="tab">
+     <center><h1 className='ho1 hoo'>Result</h1></center>
+    
  {/* <center> <h1 className='ho'>This is the Manage Student Page</h1><h2>Under Construction  &#128531;!!</h2></center> */}
  
   {/* <table>
@@ -216,54 +216,135 @@ export default function Regext() {
           ))}
          </table>  */}
    
-    <div class="varshi">
-	
-	<div className="table4">
-		<div className="table-header4">
-			<div className="header__item4">User id</div>
-			
-			<div className="header__item4">Subject</div>
-      
-      <div className="header__item4 ">Lab End Sem Marks</div>
-      <div className="header__item4 ">Theory End Sem Marks</div>
-      {/* <div className="header__item4 ">MoocsReview</div>
-      <div className="header__item4">Lab Marks</div>
-      <div className="header__item4">Tutorial</div> */}
-      <div className="header__item4">Total</div>
       {/* <div className="header__item4">Update</div> */}
       {/* <div className="header__item4">Delete</div> */}
 			{/* <div className="header__item">Email</div>
 			<div className="header__item">Year Of Study</div> */}
 			{/* <div className="header__item">Branch</div> */}
       
-		</div>
-		<div className="table-content">	
-				
-       {res.map((obj)=>(
-            <div className="table-row4">
-            <div className="table-data4 ">{obj.userid}</div>
-            <div className="table-data4 ">{obj.sub}</div>
-            {/* <div className="table-data1 hp"></div> */}
-            <div className="table-data4 ">{obj.Labendsemmarks}</div>
-            <br/>
-            <div className="table-data4 ">{obj.Theoryendsemmarks}</div>
-            {/* <div className="table-data4 ">{obj.MoocsReview}</div> */}
-            {/* <div className="table-data4 ">{obj.LabMarks}</div>
-            <div className="table-data4 ">{obj.Tutorial}</div> */}
-            <div className="table-data4 ">{obj.total}</div>
-             {/* <div className="table-data">{obj.branch}</div> */}
-             {/* <div className="table-data1"><button >Update</button></div> */}
-            {/* <div className="table-data4 "><button className='manex'  onClick={() => deleteProduct(obj.userid)}>Delete</button></div> */}
-            </div>
-          ))}
-				
+            <body>
+ <div id="wrapper">
+
+  
+  <table id="keywords" cellspacing="0" cellpadding="0">
+    <thead>
+      <tr>
+        <th><span>University id</span></th>
+        <th><span>Course</span></th>
+        <th><span>Internals(60)</span></th>
+        <th><span>Externals(40)</span></th>
+        <th><span>Total(100)</span></th>
+        <th><span>Grade</span></th>
+        <th><span>Grade Point</span></th>
+      </tr>
+    </thead>
+    <tbody>
+    {/* {res.map((obj)=>(
+      <tr>
+        <td class="lalign">{obj.userid}</td>
+        <td>{obj.sub}</td>
+        <td>{obj.total}</td>
+        {res1.map((obj1)=>(
+        <td>{obj1.total}</td>
+        
+        ))}
+        {res1.map((obj1)=>(
+        <td>{parseInt(obj.total)+parseInt(obj1.total)}</td>
+        
+        ))}
+         {res1.map((obj1)=>(
+        parseInt(obj.total)+parseInt(obj1.total)>=90?<td>O</td>:( parseInt(obj.total)+parseInt(obj1.total)>=80 &&  parseInt(obj.total)+parseInt(obj1.total)<90)?<td>A+</td>:( parseInt(obj.total)+parseInt(obj1.total)>=70 &&  parseInt(obj.total)+parseInt(obj1.total)<80)?<td>A</td>:( parseInt(obj.total)+parseInt(obj1.total)>=60 &&  parseInt(obj.total)+parseInt(obj1.total)<70)?<td>B</td>:( parseInt(obj.total)+parseInt(obj1.total)>=50 &&  parseInt(obj.total)+parseInt(obj1.total)<60)?<td>B+</td>:( parseInt(obj.total)+parseInt(obj1.total)>=40 &&  parseInt(obj.total)+parseInt(obj1.total)<50)?<td>C</td>:( parseInt(obj.total)+parseInt(obj1.total)<40)?<td>FAIL</td>:<td></td>
+        
+        ))}
+        {res1.map((obj1)=>(
+        parseInt(obj.total)+parseInt(obj1.total)>=90?<td>10</td>:( parseInt(obj.total)+parseInt(obj1.total)>=80 &&  parseInt(obj.total)+parseInt(obj1.total)<90)?<td>9</td>:( parseInt(obj.total)+parseInt(obj1.total)>=70 &&  parseInt(obj.total)+parseInt(obj1.total)<80)?<td>8</td>:( parseInt(obj.total)+parseInt(obj1.total)>=60 &&  parseInt(obj.total)+parseInt(obj1.total)<70)?<td>7</td>:( parseInt(obj.total)+parseInt(obj1.total)>=50 &&  parseInt(obj.total)+parseInt(obj1.total)<60)?<td>6</td>:( parseInt(obj.total)+parseInt(obj1.total)>=40 &&  parseInt(obj.total)+parseInt(obj1.total)<50)?<td>5</td>:( parseInt(obj.total)+parseInt(obj1.total)<40)?<td>FAIL</td>:<td></td>
+        
+        ))} */}
+
+      {/* </tr>
+       ))} */}
+      
+  {res.map((obj) => (
+    <tr className="restn">
+      <td className="lalign">{obj.userid}</td>
+      <td>{obj.sub}</td>
+      <td>{obj.total}</td>
+      {res1.map((obj1) => (
+        obj1.userid === obj.userid &&
+        obj1.sub === obj.sub &&
+        <td>{obj1.total}</td>
+      ))}
+      {res1.map((obj1) => (
+        obj1.userid === obj.userid &&
+        obj1.sub === obj.sub &&
+        <td>{parseInt(obj.total) + parseInt(obj1.total)}</td>
+      ))}
+      {res1.map((obj1) => (
+        obj1.userid === obj.userid &&
+        obj1.sub === obj.sub &&
+        <td>
+          {parseInt(obj.total) + parseInt(obj1.total) >= 90 ? (
+            "O"
+          ) : parseInt(obj.total) + parseInt(obj1.total) >= 80 &&
+            parseInt(obj.total) + parseInt(obj1.total) < 90 ? (
+            "A+"
+          ) : parseInt(obj.total) + parseInt(obj1.total) >= 70 &&
+            parseInt(obj.total) + parseInt(obj1.total) < 80 ? (
+            "A"
+          ) : parseInt(obj.total) + parseInt(obj1.total) >= 60 &&
+            parseInt(obj.total) + parseInt(obj1.total) < 70 ? (
+            "B"
+          ) : parseInt(obj.total) + parseInt(obj1.total) >= 50 &&
+            parseInt(obj.total) + parseInt(obj1.total) < 60 ? (
+            "B+"
+          ) : parseInt(obj.total) + parseInt(obj1.total) >= 40 &&
+            parseInt(obj.total) + parseInt(obj1.total) < 50 ? (
+            "C"
+          ) : parseInt(obj.total) + parseInt(obj1.total) < 40 ? (
+            "FAIL"
+          ) : (
+            ""
+          )}
+        </td>
+      ))}
+      {res1.map((obj1) => (
+        obj1.userid === obj.userid &&
+        obj1.sub === obj.sub &&
+        <td>
+          {parseInt(obj.total) + parseInt(obj1.total) >= 90 ? (
+            "10"
+          ) : parseInt(obj.total) + parseInt(obj1.total) >= 80 &&
+            parseInt(obj.total) + parseInt(obj1.total) < 90 ? (
+            "9"
+          ) : parseInt(obj.total) + parseInt(obj1.total) >= 70 &&
+            parseInt(obj.total) + parseInt(obj1.total) < 80 ? (
+            "8"
+          ) : parseInt(obj.total) + parseInt(obj1.total) >= 60 &&
+            parseInt(obj.total) + parseInt(obj1.total) < 70 ? (
+            "7"
+          ) : parseInt(obj.total) + parseInt(obj1.total) >= 50 &&
+            parseInt(obj.total) + parseInt(obj1.total) < 60 ? (
+            "6"
+          ) : parseInt(obj.total) + parseInt(obj1.total) >= 40 &&
+            parseInt(obj.total) + parseInt(obj1.total) < 50 ? (
+            "5"
+          ) : parseInt(obj.total) + parseInt(obj1.total) < 40 ? (
+            "FAIL"
+          ) : (
+            ""
+          )}
+        </td>
+      ))}
+    </tr>
+  ))}
+</tbody>
+
+    
+  </table>
+ </div> 
+</body>
 		
-			
-		</div>	
-	</div>
-</div>
- </div>
- 
+
  
      </>
   );

@@ -3,13 +3,15 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react';
  import axios from 'axios';
 // import "bootstrap-icons/font/bootstrap-icons.css";
-
-export default function Managestudent() {
+import { useEffect } from 'react';
+// import "bootstrap-icons/font/bootstrap-icons.css";
+import { useSelector } from 'react-redux';
+export default function ManageInternals() {
   const navigate=useNavigate()
   const [res,setRes] = useState(null);
-  
+  const id = useSelector(state => state.login[0]);
    function deleteProduct(userid){
-    axios.delete(`http://localhost:1111/delete/${userid}`,{params:{}})
+    axios.delete(`http://localhost:1111/de/${userid}`,{params:{}})
      .then((result)=>{
        console.log(result.data);
       //  handleSubmit(); 
@@ -19,14 +21,22 @@ export default function Managestudent() {
      })
    }
     // const handleSubmit = () => {
-    axios.get("http://localhost:1111/products",{
-       params:{}
-     }).then((result)=>{
-         
-         setRes(result.data);
-     }).catch((error)=>{
-         console.log(error);
-     })  
+     
+     useEffect(() => {
+      axios.get("http://localhost:1111/mnr", {
+          params: {
+            id: id
+          }
+        })
+        .then((result) => {
+          setRes(result.data);
+           
+           console.log("result",result.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        }); 
+    }, [id]);
     //  var br;
     //  console.log(res);
       // }
@@ -87,7 +97,7 @@ export default function Managestudent() {
           <li className="nav-item">
                   <a className="nav-link active" aria-current="page" href="recreq">Announcements</a>
                 </li>
-            
+              
              
               <li className="nav-item">
                   <a className="nav-link active" aria-current="page" href="recreqqq">Received Requests</a>
@@ -128,7 +138,7 @@ export default function Managestudent() {
        {/* <div className="App">
           <button onClick={handleSubmit}>GetStudentData</button>
           </div> */}
-           <center><h1 className='ho1 hoo'>Student Data</h1></center> 
+           <center><h1 className='ho1 hoo'>Manage Externals</h1></center> 
        </>
         
       
@@ -213,7 +223,7 @@ export default function Managestudent() {
         </div>
         
       </nav>
-      <center><h1 className='ho1 hoo'>Student Data</h1></center>
+      <center><h1 className='ho1 hoo'>Manage Externals</h1></center>
       {/* <div className="tab"> */}
        {/* <center> <h1 className='ho'>This is the Manage Student Page</h1><h2>Under Construction  &#128531;!!</h2></center> */}
        {/* <button onClick={handleSubmit}>Get Student Data</button>
@@ -261,27 +271,42 @@ export default function Managestudent() {
    
     <div class="varshi">
 	
-	<div className="table">
-		<div className="table-header">
-			<div className="header__item">User id</div>
-			<div className="header__item">Name</div>
-			<div className="header__item">Email</div>
-			<div className="header__item">Year Of Study</div>
+	<div className="table4">
+		<div className="table-header4">
+			<div className="header__item4">User id</div>
+			
+			<div className="header__item4">Subject</div>
+      
+      <div className="header__item4 ">Lab End Sem Marks</div>
+      <div className="header__item4 ">Theory End Sem Marks</div>
+      {/* <div className="header__item4 ">MoocsReview</div>
+      <div className="header__item4">Lab Marks</div>
+      <div className="header__item4">Tutorial</div> */}
+      <div className="header__item4">Total</div>
+      {/* <div className="header__item4">Update</div> */}
+      <div className="header__item4">Delete</div>
+			{/* <div className="header__item">Email</div>
+			<div className="header__item">Year Of Study</div> */}
 			{/* <div className="header__item">Branch</div> */}
-      {/* <div className="header__item">Update</div> */}
-      <div className="header__item">Delete</div>
+      
 		</div>
 		<div className="table-content">	
 				
-      {res.map((obj)=>(
-            <div className="table-row">
-            <div className="table-data">{obj.userid}</div>
-            <div className="table-data ">{obj.name}</div>
-            <div className="table-data hp">{obj.email}</div>
-            <div className="table-data">{obj.study}</div>
+       {res.map((obj)=>(
+            <div className="table-row4">
+            <div className="table-data4 ">{obj.userid}</div>
+            <div className="table-data4 ">{obj.sub}</div>
+            {/* <div className="table-data1 hp"></div> */}
+            <div className="table-data4 ">{obj.Labendsemmarks}</div>
+            <br/>
+            <div className="table-data4 ">{obj.Theoryendsemmarks}</div>
+            {/* <div className="table-data4 ">{obj.MoocsReview}</div> */}
+            {/* <div className="table-data4 ">{obj.LabMarks}</div>
+            <div className="table-data4 ">{obj.Tutorial}</div> */}
+            <div className="table-data4 ">{obj.total}</div>
              {/* <div className="table-data">{obj.branch}</div> */}
-             {/* <div className="table-data"><button >Update</button></div> */}
-            <div className="table-data"><button onClick={() => deleteProduct(obj.userid)}>Delete</button></div>
+             {/* <div className="table-data1"><button >Update</button></div> */}
+            <div className="table-data4 "><button className='manex'  onClick={() => deleteProduct(obj.userid)}>Delete</button></div>
             </div>
           ))}
 				

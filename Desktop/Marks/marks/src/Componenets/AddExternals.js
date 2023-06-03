@@ -2,34 +2,119 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react';
  import axios from 'axios';
+ import { useEffect } from 'react';
 // import "bootstrap-icons/font/bootstrap-icons.css";
+import { useSelector } from 'react-redux';
+import emailjs from "@emailjs/browser";
+import  { useRef } from "react";
 
-export default function Managestudent() {
+export default function Externals() {
   const navigate=useNavigate()
   const [res,setRes] = useState(null);
-  
-   function deleteProduct(userid){
-    axios.delete(`http://localhost:1111/delete/${userid}`,{params:{}})
-     .then((result)=>{
-       console.log(result.data);
-      //  handleSubmit(); 
+  const form = useRef();
+  const id = useSelector(state => state.login[0]);
+  //  function deleteProduct(userid){
+  //   axios.delete(`http://localhost:1111/delete/${userid}`,{params:{}})
+  //    .then((result)=>{
+  //      console.log(result.data);
+  //     //  handleSubmit(); 
       
-     }).catch((error)=>{
-       console.log(error);
-     })
-   }
+  //    }).catch((error)=>{
+  //      console.log(error);
+  //    })
+  //  }
     // const handleSubmit = () => {
-    axios.get("http://localhost:1111/products",{
-       params:{}
-     }).then((result)=>{
-         
-         setRes(result.data);
-     }).catch((error)=>{
-         console.log(error);
-     })  
+      // let i=1;
+      useEffect(() => {
+        axios.get("http://localhost:1111/adr", {
+            params: {
+              id: id
+            }
+          })
+          .then((result) => {
+            setRes(result.data);
+             
+            // console.log("result",result.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          }); 
+      }, [id]);
     //  var br;
+    
+    var re=0;
+
     //  console.log(res);
       // }
+      
+      const handleSubmit = (event, userid,r) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+         
+    axios.post("http://localhost:1111/extu",{
+     
+    userid : userid,
+    sub:r
+  }).then((response) => {
+    console.log(response.data);
+   if (response.data === "True") {
+       document.getElementById(userid+"H").style.border = "2px solid red";
+       document.getElementById(userid+"A").style.border = "2px solid red";
+      //  document.getElementById(userid+"M").style.border = "2px solid red";
+      //  document.getElementById(userid+"L").style.border = "2px solid red";
+      //  document.getElementById(userid+"T").style.border = "2px solid red";
+       document.getElementById("errorid").style.color = "red";
+       document.getElementById("errorid").innerHTML = "Externals Already Given For This Student";
+       document.getElementById(userid+"H").value = "";
+       document.getElementById(userid+"A").value = "";
+      //  document.getElementById(userid+"M").value = "";
+      //  document.getElementById(userid+"L").value = "";
+      //  document.getElementById(userid+"T").value="";
+    }
+    else{
+        axios.post("http://localhost:1111/posy1",{
+          userid:userid,
+          sub:r,
+          Labendsemmarks: data.get('H'),
+          Theoryendsemmarks: data.get('A'),
+          // MoocsReview: data.get('M'),
+          // LabMarks:data.get('L'),
+          // Tutorial:data.get('T'),
+          total:parseInt(data.get('H'))+parseInt(data.get('A')),
+        }).then((response) => {
+          console.log(response.data);
+          emailjs.sendForm(
+            "service_nsjmlm9",
+           "template_8h9zznb",
+           form.current,
+            "tdcsrPVxRWEBjvfoA",
+          )
+          .then(
+          (result) => {
+             console.log(result.text);
+             console.log("message sent");
+           },
+           (error) => {
+              console.log(error.text);
+           }
+          );
+          document.getElementById(userid+"H").style.border = "2px solid green";
+          document.getElementById(userid+"A").style.border = "2px solid green";
+          // document.getElementById(userid+"M").style.border = "2px solid green";
+          // document.getElementById(userid+"L").style.border = "2px solid green";
+          // document.getElementById(userid+"T").style.border = "2px solid green";
+          document.getElementById("errorid").style.color = "green";
+          document.getElementById("errorid").innerHTML = "Externals Succesfully Added";
+          
+        }).catch((error) => {
+            console.log(error);
+        })
+    }
+    }).catch((error) => {
+      console.log(error);
+      })
+    }
+    
      if( res == null ){
       return (
         
@@ -87,14 +172,12 @@ export default function Managestudent() {
           <li className="nav-item">
                   <a className="nav-link active" aria-current="page" href="recreq">Announcements</a>
                 </li>
-            
              
               <li className="nav-item">
                   <a className="nav-link active" aria-current="page" href="recreqqq">Received Requests</a>
                 </li>
               </ul>
-              
-              
+             
             </div>
             <button type="button" className="btn btn-danger" onClick={()=>navigate('/')}>Logout</button>
           </div>
@@ -128,7 +211,7 @@ export default function Managestudent() {
        {/* <div className="App">
           <button onClick={handleSubmit}>GetStudentData</button>
           </div> */}
-           <center><h1 className='ho1 hoo'>Student Data</h1></center> 
+           <center><h1 className='ho1 hoo'>Add Externals</h1></center> 
        </>
         
       
@@ -195,17 +278,16 @@ export default function Managestudent() {
               <li><a className="dropdown-item" href="int">Manage Internals</a></li>
                   </ul>
                 </li>
+
                 <li className="nav-item">
                   <a className="nav-link active" aria-current="page" href="recreq">Announcements</a>
                 </li>
-               
              
               <li className="nav-item">
                   <a className="nav-link active" aria-current="page" href="recreqqq">Received Requests</a>
                 </li>
               </ul>
-              
-              
+           
             </div>
             <button type="button" className="btn btn-danger" onClick={()=>navigate('/')}>Logout</button>
           </div>
@@ -213,7 +295,8 @@ export default function Managestudent() {
         </div>
         
       </nav>
-      <center><h1 className='ho1 hoo'>Student Data</h1></center>
+      <center><h1 className='ho1 hoo'>Add Externals</h1></center>
+      <h1><center><div id="errorid"> </div></center></h1>
       {/* <div className="tab"> */}
        {/* <center> <h1 className='ho'>This is the Manage Student Page</h1><h2>Under Construction  &#128531;!!</h2></center> */}
        {/* <button onClick={handleSubmit}>Get Student Data</button>
@@ -260,35 +343,60 @@ export default function Managestudent() {
          </table>  */}
    
     <div class="varshi">
-	
+	 
 	<div className="table">
-		<div className="table-header">
-			<div className="header__item">User id</div>
-			<div className="header__item">Name</div>
-			<div className="header__item">Email</div>
-			<div className="header__item">Year Of Study</div>
+		<div className="table-header2">
+			<div className="header__item2">Userid</div>
+			<div className="header__item2">Subject</div>
+      
+      {/* <div className="header__item1 ">  Homeassignment(HA) </div>
+      <div className="header__item1 hty">Alm</div>
+      <div className="header__item1 hty">Moocs Review</div> */}
+      <div className="header__item3 ">Lab End Sem Marks</div>
+      <div className="header__item2 ">Theory End Sem Marks</div>
+			{/* <div className="header__item">Email</div> */}
+			{/* <div className="header__item">Year Of Study</div> */}
 			{/* <div className="header__item">Branch</div> */}
-      {/* <div className="header__item">Update</div> */}
-      <div className="header__item">Delete</div>
+       <div className="header__item2 hty1">Add</div> 
+       
+      {/* <div className="header__item">Delete</div> */}
 		</div>
 		<div className="table-content">	
-				
-      {res.map((obj)=>(
-            <div className="table-row">
-            <div className="table-data">{obj.userid}</div>
-            <div className="table-data ">{obj.name}</div>
-            <div className="table-data hp">{obj.email}</div>
-            <div className="table-data">{obj.study}</div>
+    {res.slice(0, -1).map((obj)=>(
+     re=re+1
+    ))}
+      {res.slice(0, -2).map((obj)=>(
+           
+            <div className="table-row2">
+            <div className="table-data2">{obj.userid}</div>
+            <div className="table-data2 ">{res[re-1]}</div>
+            <form ref={form} onSubmit={ (event) => handleSubmit(event, obj.userid,res[re-1])}>
+            <div className='smalver' ><input className='email23'  type="email"  name="email" value={obj.email}/>
+          <input className='email23'  type="text"  name="sub" value={res[re]}/></div>
+            <div className="formtab1">
+            <div className="table-data2 f2"> <input  id={obj.userid + "H"}  name="H" type="number" max="10" min="1" required /></div>
+            <div className="table-data2 f2"><input id={obj.userid + "A"}   name="A"  type="number" max="30" min="1" required /></div>
+            {/* <div className="table-data1 f1"> <input id={obj.userid + "M"}  name="M"  type="number" max="15" min="1" required /></div>
+            <div className="table-data1 f1"><input id={obj.userid + "L"}   name="L"  type="number" max="10" min="1" required /></div>
+            <div className="table-data1 f1"><input id={obj.userid + "T"}  name="T"  type="number" max="10" min="1" required /></div> */}
+            <button type="submit" >Add</button>
+            </div>
+            </form>
+            {/* <div className="table-data"><button onClick={() => handleSubmit()}>Add</button></div>  */}
+            
+             </div>))}
+              
+				{/* {res[4]} */}
+		{/* <div className="table-data hp">{obj.email}</div> */}
+            {/* <div className="table-data">{obj.study}</div> */}
              {/* <div className="table-data">{obj.branch}</div> */}
              {/* <div className="table-data"><button >Update</button></div> */}
-            <div className="table-data"><button onClick={() => deleteProduct(obj.userid)}>Delete</button></div>
-            </div>
-          ))}
-				
-		
+            {/* <div className="table-data"><button onClick={() => deleteProduct(obj.userid)}>Delete</button></div> */}
 			
-		</div>	
+		</div>
+    
 	</div>
+ 
 </div>
  </div>
  
@@ -298,3 +406,4 @@ export default function Managestudent() {
       }
       
     }
+  

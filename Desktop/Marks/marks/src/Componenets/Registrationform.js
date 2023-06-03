@@ -65,7 +65,12 @@ export default function Registrationform() {
     document.getElementById("errorid").innerHTML = "The id number should be of length 10";
     document.getElementById("ii").value = "";
    }
-  
+  if(response.data==="False"){
+    document.getElementById("ii").style.border = "2px solid green";
+    document.getElementById("errorid").style.color = "green";
+    document.getElementById("errorid").innerHTML = "";
+   
+
    axios.post("http://localhost:1111/r",{
      
    email : data.get('email'),
@@ -94,7 +99,7 @@ export default function Registrationform() {
         document.getElementById("errorpassword").innerHTML=errorpassword1;
     }
   
-    
+  
    else{
     axios.post("http://localhost:1111/register",{
       name : data.get('name'),
@@ -110,21 +115,21 @@ export default function Registrationform() {
     }).then((response) => {
       console.log(response.data);
       setRes(response.data);
-      emailjs.sendForm(
-        "service_nsjmlm9",
-        "template_5xh67by",
-        form.current,
-        "tdcsrPVxRWEBjvfoA"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-          console.log("message sent");
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
+      // emailjs.sendForm(
+      //   "service_nsjmlm9",
+      //   "template_5xh67by",
+      //   form.current,
+      //   "tdcsrPVxRWEBjvfoA"
+      // )
+      // .then(
+      //   (result) => {
+      //     console.log(result.text);
+      //     console.log("message sent");
+      //   },
+      //   (error) => {
+      //     console.log(error.text);
+      //   }
+      // );
       
       navigate('/');
       
@@ -134,7 +139,7 @@ export default function Registrationform() {
   }
   }).catch((error) => {
       console.log(error);
-  })
+  })}
   }).catch((error) => {
   console.log(error);
   })
@@ -142,21 +147,21 @@ export default function Registrationform() {
 
    
     //email sending
-    // emailjs.sendForm(
-    //   "service_nsjmlm9",
-    //   "template_5xh67by",
-    //   form.current,
-    //   "tdcsrPVxRWEBjvfoA"
-    // )
-    // .then(
-    //   (result) => {
-    //     console.log(result.text);
-    //     console.log("message sent");
-    //   },
-    //   (error) => {
-    //     console.log(error.text);
-    //   }
-    // );
+     emailjs.sendForm(
+       "service_nsjmlm9",
+      "template_5xh67by",
+      form.current,
+       "tdcsrPVxRWEBjvfoA"
+     )
+     .then(
+     (result) => {
+        console.log(result.text);
+        console.log("message sent");
+      },
+      (error) => {
+         console.log(error.text);
+      }
+     );
     
 
   }

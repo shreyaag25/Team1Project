@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom'
 // import ma from 'C:\Users\assr\Desktop\Marks\marks\public\ma.jpg';
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-import ma from './assets/ma.jpg';
-
+// import ma from './assets/ma.jpg';
+import uni2 from './assets/uni2.webp';
 // import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -29,6 +29,8 @@ export default function Navbar() {
   }).catch((error)=>{
       console.log(error);
   })  
+  // let name
+ 
   return (
     
     <>
@@ -68,7 +70,7 @@ export default function Navbar() {
               
             </ul>
           </li>
-          <li className="nav-item dropdown">
+          {/* <li className="nav-item dropdown">
             <a className="nav-link dropdown-toggle active my-3" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
              Subject
             </a>
@@ -77,21 +79,28 @@ export default function Navbar() {
               <li><a className="dropdown-item" href="ms">Manage Subjects</a></li>
     
             </ul>
-          </li>
-          <li className="nav-item dropdown">
+          </li> */}
+         <li className="nav-item dropdown">
             <a className="nav-link dropdown-toggle active my-3" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Results
             </a>
             <ul className="dropdown-menu dropdown-menu-dark">
-              <li><a className="dropdown-item" href="adr">Add Result</a></li>
-              <li><a className="dropdown-item" href="int">Internals</a></li>
-              <li><a className="dropdown-item" href="ext">Externals</a></li>
-              <li><a className="dropdown-item" href="mnr">Manage Results</a></li>
+              <li><a className="dropdown-item" href="adr">Add Internals</a></li>
+              <li><a className="dropdown-item" href="int">Add Externals</a></li>
+              <li><a className="dropdown-item" href="ext">Mnanage Externals</a></li>
+              <li><a className="dropdown-item" href="mnr">Manage Internals</a></li>
             </ul>
           </li>
+          <li className="nav-item">
+                  <a className="nav-link active" aria-current="page" href="recreq">Announcements</a>
+                </li>
+               
+             
+              <li className="nav-item">
+                  <a className="nav-link active" aria-current="page" href="recreqqq">Received Requests</a>
+                </li>
         </ul>
-        
-        
+       
       </div>
       <button type="button" className="btn btn-danger" onClick={()=>navigate('/')}>Logout</button>
     </div>
@@ -101,7 +110,7 @@ export default function Navbar() {
 </nav>
 <div className="bat">
   <center> <h1 >Welcome</h1></center> 
-   <img className="bg" src={ma} alt="this is marks image"></img>
+   <img className="bg" src={uni2} alt="this is marks"></img>
    <br/>
    <br/>
    <center>
@@ -133,7 +142,7 @@ export default function Navbar() {
           <h6 class="hoo">Total Admin Count</h6>
          
             <h2 class="text-right"> <span><i class="bi bi-person-workspace"></i></span></h2>
-           1
+           5
           </Typography>
           <Typography variant="subtitle1" color="text.secondary" component="div">
            
@@ -146,6 +155,22 @@ export default function Navbar() {
     </div>
     </center>
  </div>
+ <center><h1 className='ho1 hoo'>About</h1></center>
+ <div className="marabdi">
+ <ul className="marab">
+    <li>Grade check is a marks management system. </li>
+    <li>That typically consists of two roles- the faculty and the student. </li>
+    <li>The faculty role involves entering the marks for various assessments and assigning grades. </li>
+    <li>The student role involves logging into the system and checking their marks for various assessments, assignments and exams.  </li>
+    <li>The system also allows students to track their progress over time and identify areas where they need to improve.</li>
+    <li>It provides real time access to marks and grades, reducing the time and effort for manual record-keeping.</li>
+  <li>additionally, the system ensures accuracy and security of data, preventing unauthorised access and tampering of marks.</li>
+  </ul>
+  </div>
+
+
+
+
  </>
   )
 }

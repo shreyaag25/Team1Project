@@ -1,12 +1,16 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+
 // import { useState } from 'react';
  import axios from 'axios';
 
-export default function Loginpage() {
+
+export default function Loginpage({store}) {
  
      const navigate=useNavigate()
+     let ids,l;
      
+    
      //const [res,setRes] = useState('');
     //  const [formData, setFormData] = useState({
     //     userid: '',
@@ -17,7 +21,9 @@ export default function Loginpage() {
      const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-       
+        ids=data.get('userid')
+        
+        console.log(ids,"pove")
         //  setFormData({
         //     userid: data.get('userid'),
         //     pass: data.get('pass')
@@ -27,15 +33,20 @@ export default function Loginpage() {
             userid: data.get('userid'),
             pass: data.get('pass'),
             admin:data.get('admin')
+            
           }).then((result)=>{
              console.log(result.data);
              //setRes(result.data);
              //console.log(res);
              if(result.data==="True" ){
-                    console.log('Hai');
+                    store.dispatch({type:"login",data:{id:ids}})
+                    // console.log('Hai');
+                    
+                   
                     navigate('Home')          
              }
              else if(result.data==="Tr"){
+              store.dispatch({type:"login",data:{id:ids}})
               navigate('regis')
              }
              else{

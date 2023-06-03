@@ -1,8 +1,38 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+// import ma from 'C:\Users\assr\Desktop\Marks\marks\public\ma.jpg';
+import "bootstrap-icons/font/bootstrap-icons.css";
+
+// import ma from './assets/ma.jpg';
+import uni2 from './assets/uni2.webp';
+// import { useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+// import CardMedia from '@mui/material/CardMedia';
+// import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+// import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
+// import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+// import SkipNextIcon from '@mui/icons-material/SkipNext';
+// import Face2Icon from '@mui/icons-material/Face2';
+import { useState } from 'react';
+ import axios from 'axios';
+
+  
 // import "bootstrap-icons/font/bootstrap-icons.css";
-export default function Navbar() {
+export default function Registerstu() {
   const navigate=useNavigate()
+  const [res,setRes] = useState(0);
+  // const navigate=useNavigate();
+  axios.get("http://localhost:1111/count",{
+    params:{}
+  }).then((result)=>{
+      var p=result.data;
+      setRes(p.length);
+  }).catch((error)=>{
+      console.log(error);
+  })  
   return (
     
     <>
@@ -29,7 +59,7 @@ export default function Navbar() {
             <a className="nav-link active" aria-current="page" href="regis">Home</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link active my-3" aria-current="page" href="profile">Profile   <i class="bi bi-person-circle"></i></a>
+            <a className="nav-link active my-3" aria-current="page" href="profilestu">Profile   <i class="bi bi-person-circle"></i></a>
            
           </li>
           {/* <li className="nav-item dropdown">
@@ -58,16 +88,20 @@ export default function Navbar() {
             </a>
             <ul className="dropdown-menu dropdown-menu-dark">
               {/* <li><a className="dropdown-item" href="adr">Add Result</a></li> */}
-              <li><a className="dropdown-item" href="int">Internals</a></li>
-              <li><a className="dropdown-item" href="ext">Externals</a></li>
+              <li><a className="dropdown-item" href="intstu">Internals</a></li>
+              <li><a className="dropdown-item" href="extstu">Externals</a></li>
               {/* <li><a className="dropdown-item" href="mnr">Manage Results</a></li> */}
             </ul>
           </li>
           
+           
+            <a className="dropdown-item" href="resanal">Complete result analysis</a>
+            <br/>
+          <a className="dropdown-item" href="reqstu">Requests or queries</a>
             
-          <a className="dropdown-item" href="req">Requests or queries</a>
-            
-            
+          <li className="nav-item">
+                  <a className="nav-link active" aria-current="page" href="stano">Announcements</a>
+                </li>
         
         </ul>
         
@@ -79,9 +113,71 @@ export default function Navbar() {
   </div>
   
 </nav>
-<div>
- <center> <h1 className='ho'>This is the Student login Page</h1><h2>Under Construction &#128531;!!</h2></center>
+
+<div className="bat">
+<br/>
+   
+
+   <img className="bg" src={uni2} alt="this is marks"></img>
+   <br/>
+   <br/>
+   <center>
+   <div className="dis">
+   <Card   >
+      <Box className="c1" >
+        <CardContent sx={{ flex: '1 0 auto' }}>
+          <Typography component="div" variant="h5">
+          <h6 class="hoo">Total Student Count</h6>
+         
+            <h2 class="text-right"> <span><i class="bi bi-person-video3"></i></span></h2>
+           {res}
+          </Typography>
+          <Typography variant="subtitle1" color="text.secondary" component="div">
+           
+          </Typography>
+        </CardContent>
+       
+      </Box>
+     
+    </Card> 
+  {/* <h2>Under Construction &#128531;!!</h2> */}
+  
+  
+  <Card   >
+      <Box className="c2" >
+        <CardContent sx={{ flex: '1 0 auto' }}>
+          <Typography component="div" variant="h5">
+          <h6 class="hoo">Total Admin Count</h6>
+         
+            <h2 class="text-right"> <span><i class="bi bi-person-workspace"></i></span></h2>
+           5
+          </Typography>
+          <Typography variant="subtitle1" color="text.secondary" component="div">
+           
+          </Typography>
+        </CardContent>
+
+      </Box>
+     
+    </Card> 
+    </div>
+    </center>
+
  </div>
+ <center><h1 className='ho1 hoo'>About</h1></center>
+ <div className="marabdi">
+ <ul className="marab">
+  <p>
+    <li>Grade check is a marks management system. </li>
+    <li>That typically consists of two roles- the faculty and the student. </li>
+    <li>The faculty role involves entering the marks for various assessments and assigning grades. </li>
+    <li>The student role involves logging into the system and checking their marks for various assessments, assignments and exams.  </li>
+    <li>The system also allows students to track their progress over time and identify areas where they need to improve.</li>
+    <li>It provides real time access to marks and grades, reducing the time and effort for manual record-keeping.</li>
+  <li>additionally, the system ensures accuracy and security of data, preventing unauthorised access and tampering of marks.</li>
+  </p>
+  </ul>
+  </div>
  </>
   )
 }

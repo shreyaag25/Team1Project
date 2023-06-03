@@ -42,7 +42,7 @@ export default function Navbar() {
               
             </ul>
           </li>
-          <li className="nav-item dropdown">
+          {/* <li className="nav-item dropdown">
             <a className="nav-link dropdown-toggle active my-3" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
              Subject
             </a>
@@ -51,16 +51,16 @@ export default function Navbar() {
               <li><a className="dropdown-item" href="ms">Manage Subjects</a></li>
     
             </ul>
-          </li>
-          <li className="nav-item dropdown">
+          </li> */}
+         <li className="nav-item dropdown">
             <a className="nav-link dropdown-toggle active my-3" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Results
             </a>
             <ul className="dropdown-menu dropdown-menu-dark">
-              <li><a className="dropdown-item" href="adr">Add Result</a></li>
-              <li><a className="dropdown-item" href="int">Internals</a></li>
-              <li><a className="dropdown-item" href="ext">Externals</a></li>
-              <li><a className="dropdown-item" href="mnr">Manage Results</a></li>
+              <li><a className="dropdown-item" href="adr">Add Internals</a></li>
+              <li><a className="dropdown-item" href="int">Add Externals</a></li>
+              <li><a className="dropdown-item" href="ext">Mnanage Externals</a></li>
+              <li><a className="dropdown-item" href="mnr">Manage Internals</a></li>
             </ul>
           </li>
         </ul>
