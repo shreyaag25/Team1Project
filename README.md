@@ -1,4 +1,4 @@
-In our endeavor to address the critical issue of women's safety, our project aims to develop a comprehensive mobile application equipped with essential features tailored to enhance security and provide peace of mind. Through innovative technology and user-centric design, our app seeks to empower women to navigate their surroundings with confidence and assurance:
+In our endeavor to address the critical issue of women's safety, our project aims to develop a comprehensive mobile application equipped with essential features tailored to enhance security and provide peace of mind. Through innovative technology and user-centric design, our app seeks to empower women to navigate their surroundings with confidence and assurance.
 
 Live Location Tracking of User: At the heart of our women's safety app lies a robust feature ensuring real-time monitoring of the user's location. 
 
