@@ -7,21 +7,5 @@ In our endeavor to address the critical issue of women's safety, our project aim
 ****Innovative Location Rating System**:** Complementing our commitment to empowering women's safety is our innovative location rating system. By harnessing user feedback and community insights, this dynamic feature not only helps users navigate safer routes but also fosters a supportive environment where individuals can actively contribute to enhancing security awareness and vigilance within their surroundings.
 
 **Our Project File Structure:**
-.
-└── SheSafety/
-    ├── assets/
-    │   └── images
-    ├── NavBar/
-    │   ├── screens/
-    │   │   ├── Contact.js
-    │   │   ├── Home.js
-    │   │   ├── SosAlert.js
-    │   │   └── Tutorials.js
-    │   ├── LoginSection.js
-    │   └── MainContainer.js
-    ├── Services/
-    │   └── index.js
-    ├── hooks/
-    │   └── useWarmUpBrowser.tsx
-    ├── App.js
-    └── node_modules
+![image](https://github.com/shreyaag25/Team1Project/assets/110450831/39721245-32cb-46e2-8445-f789e970bf0f)
+
